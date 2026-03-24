@@ -1,0 +1,28 @@
+{
+  "businessService": "wonka",
+  "pipelineName": "mypipeline",
+  "component": "api",
+  "securityZone": "dev",
+  "stack": "dv",
+  "region": "us-west-2",
+  "namespace": "wonka-dv",
+  "sources": [
+    {
+      "repoURL": "https://github.com/ncmuthu/helm-chart-api-server",
+      "targetRevision": "v0.1",
+      "path": ".",
+      "helm": {
+        "valueFiles": [
+          "$wonka-app/.cloudos/kubernetes/values/api/values.yaml",
+          "$wonka-app/.cloudos/kubernetes/values/api/dev/values.yaml",
+          "$wonka-app/.cloudos/kubernetes/values/api/dev/dv/values_us-west-2.yaml"
+        ]
+      }
+    },
+    {
+      "repoURL": "https://github.com/ncmuthu/wonka-app",
+      "ref": "wonka-app",
+      "targetRevision": "main"
+    }
+  ]
+}
